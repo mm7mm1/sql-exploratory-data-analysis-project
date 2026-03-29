@@ -12,22 +12,13 @@ WARNING:
     and ensure you have proper backups before running this script.
 */
 
+select * from gold.dim_customers limit 10;
 
--- 1. Terminate existing connections to the database
-SELECT pg_terminate_backend(pg_stat_activity.pid)
-FROM pg_stat_activity
-WHERE pg_stat_activity.datname = 'data_warehouse_analytics'
-  AND pid <> pg_backend_pid();
-
--- 2. Delete db if exists
-DROP DATABASE IF EXISTS data_warehouse_analytics;
-
--- 3. Creating db
-CREATE DATABASE data_warehouse_analytics;
-
--- 4. Create Schema
+-- 1. Create Schema
 
 CREATE SCHEMA IF NOT EXISTS gold;
+
+-- 2. Create Tables
 
 DROP TABLE IF EXISTS gold.dim_customers;
 CREATE TABLE gold.dim_customers(
@@ -72,16 +63,14 @@ CREATE TABLE gold.fact_sales(
 );
 
 
-
+-- 3. Load Data
 TRUNCATE TABLE gold.dim_customers;
-COPY gold.dim_customers FROM '/datasets/source_crm/gold.dim_customers.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',');
-
+COPY gold.dim_customers FROM '/datasets/flat-files/dim_customers.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',');
 
 
 TRUNCATE TABLE gold.dim_products;
-COPY gold.dim_products FROM '/datasets/source_crm/gold.dim_products.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',');
-
+COPY gold.dim_products FROM '/datasets/flat-files/dim_products.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',');
 
 
 TRUNCATE TABLE gold.fact_sales;
-COPY gold.fact_sales FROM '/datasets/source_crm/gold.fact_sales.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',');
+COPY gold.fact_sales FROM '/datasets/flat-files/fact_sales.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',');
