@@ -8,6 +8,11 @@ The **sql-exploratory-data-analysis-project** focuses on advanced data analytics
 #### Objective
 The main objective of this project is to perform advanced exploratory data analysis (EDA) using SQL and simulate real-world business scenarios. The project aims to uncover trends, evaluate performance, and support decision-making through data-driven insights.
 
+### Analytical Framework
+
+This project follows a structured approach to data analysis, as visualized below:
+![Advanced Analysis](./docs/Advanced_data_analysis)
+
 #### Specifications
 
 **Core SQL Techniques**
