@@ -11,7 +11,7 @@ The main objective of this project is to perform advanced exploratory data analy
 ### Analytical Framework
 
 This project follows a structured approach to data analysis, as visualized below:
-![Advanced Analysis](./docs/Advanced_data_analysis)
+![Advanced Analysis](./docs/Advanced_data_analysis.png)
 
 #### Specifications
 
